@@ -11,10 +11,10 @@ const MyMapComponent = compose(
   withProps({
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyAAvHKzLnnwoenUn8EX9vQPU34-RiGT8gg&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `100%` }} />,
-    mapElement: <div style={{ height: `100%` }} />,
-    locations: [
+      loadingElement: <div style={{ height: `100%` }} />,
+      containerElement: <div style={{ height: `100%` }} />,
+      mapElement: <div style={{ height: `100%` }} />,
+      locations: [
       {
         name: "Shibuya",
         lat: -34.397,
@@ -52,6 +52,8 @@ class MyFancyComponent extends React.PureComponent {
 
   componentDidMount() {
     this.delayedShowMarker();
+    this.props.getUsers();
+    this.props.getPlaces();
   }
 
   delayedShowMarker = () => {
