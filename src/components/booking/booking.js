@@ -31,46 +31,21 @@ const styles = theme => ({
 
 class Booking extends Component {
     render() {
-        const { classes } = this.props;
-
-        const bookings = [
-            {
-                person_id: 1,
-                person_name: "Erika",
-                speciality: "Ramen",
-                location: "Shibuya",
-                date: "2019-01-22",
-                start_time: "16:00",
-                end_time: "18:00",
-            },
-            {
-                person_id: 2,
-                person_name: "Hiroshi",
-                speciality: "Udon",
-                location: "Shinjuku",
-                date: "2019-01-23",
-                start_time: "12:00",
-                end_time: "14:00",
-            },
-            {
-                person_id: 3,
-                person_name: "Sato",
-                speciality: "Ramen",
-                location: "Shinjuku",
-                date: "2019-01-23",
-                start_time: "12:00",
-                end_time: "14:00",
-            }
-        ]
+        const { classes, bookings } = this.props;
 
         const cards = bookings.map(booking => {
-            const profileUrl = "https://s3-ap-northeast-1.amazonaws.com/matchconcierge-profiles/" + booking.person_id + ".jpg"
+            console.log(JSON.stringify(booking, null, 4))
+
+            const specialities = booking.person.specialities.map(s => s.item).join(", ")
+            const locations = booking.person.locations.map(s => s.name).join(", ")
+
+            const profileUrl = "https://s3-ap-northeast-1.amazonaws.com/matchconcierge-profiles/" + booking.person.id + ".jpg"
             return (
                 <Card className={classes.card}>
                 <CardActionArea>
                     <CardMedia
                         className={classes.media}
-                        image={profileUrl}
+                        image={booking.person.profile_photo_url}
                         title="Profile photo"
                     />
                     <CardContent>
@@ -79,19 +54,19 @@ class Booking extends Component {
                         </Typography>
 
                         <Typography variant="h5">
-                            {booking.person_name}
+                            {booking.person.name}
                         </Typography>
                         <Typography variant="body1">
-                            Speciality: {booking.speciality}
+                            Specialities: {specialities}
                         </Typography>
                         <Typography variant="body2">
-                            Date: {booking.date}
+                            Date: {booking.availability.date}
                         </Typography>
                         <Typography variant="body2">
-                            Time: {booking.start_time} ~ {booking.end_time}
+                            Time: {booking.availability.start_time} ~ {booking.availability.end_time}
                         </Typography>
                         <Typography variant="body2">
-                            Location: {booking.location}
+                            Locations: {locations}
                         </Typography>
                     </CardContent>
                     </CardActionArea>
