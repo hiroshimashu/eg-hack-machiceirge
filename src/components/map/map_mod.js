@@ -1,11 +1,13 @@
 import React from "react";
 import { compose, withProps } from "recompose";
+import { Link } from "react-router-dom";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker
 } from "react-google-maps";
+import CheckReservation  from "./checkReservation";
 import MapFirst from "../map/mapTop";
 
 const MyMapComponent = compose(
@@ -44,7 +46,8 @@ class MyFancyComponent extends React.PureComponent {
     isMarkerShown: false,
     preference: "",
     usersInfo: [],
-    placesInfo: []
+    placesInfo: [],
+    openDialog: false
   };
 
   filterByPreference = (preference, place, users) => {
@@ -61,7 +64,7 @@ class MyFancyComponent extends React.PureComponent {
     const places = await this.props.getPlaces();
     this.setState({
       usersInfo: users,
-      placesInfo: places
+      placesInfo: places,
     });
   }
 
@@ -73,6 +76,9 @@ class MyFancyComponent extends React.PureComponent {
 
   handleMarkerClick = () => {
     console.log("marker is clicked");
+    this.setState({
+      openDialog: true
+    });
     //this.setState({ isMarkerShown: false });
     //this.delayedShowMarker();
   };
@@ -87,6 +93,7 @@ class MyFancyComponent extends React.PureComponent {
           isMarkerShown={this.state.isMarkerShown}
           onMarkerClick={this.handleMarkerClick}
         />
+        {this.state.openDialog &&<CheckReservation />}
       </div>
     );
   }
