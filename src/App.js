@@ -44,24 +44,30 @@ class App extends Component {
     }
   };
 
+  getAvailability = async(availability_id) => {
+    return (await axios.get("http://13.231.153.234:3000/availabilities/" + availability_id)).data;
+  }
+
   getBookings = async () => {
     try {
-      // TODO: Get from API
-      const bookingIds = [1,25,55]
+      const fullBookings = (await axios.get("http://13.231.153.234:3000/bookings?customer_id=1")).data;
+      const people = (await axios.get("http://13.231.153.234:3000/people")).data;
 
-      const people = await axios.get("http://13.231.153.234:3000/people");
-      const availabilities = await axios.get("http://13.231.153.234:3000/availabilities");
+      const bookings = await Promise.all(fullBookings.map(async (b) => {
+        const availability = await this.getAvailability(b.availability_id)
+        const person = people.find(x => x.id == b.person_id)
 
-      const bookings = bookingIds.map(bookingId => {
-        const availability = availabilities.data.find(x => x.id == bookingId)
-        const person = people.data.find(x => x.id == availability.person_id)
+        // console.log("__________")
+        // console.log(JSON.stringify(people))
+        // console.log(JSON.stringify(availability))
+        // console.log(JSON.stringify(person))
 
         return {
-          id: bookingId,
+          id: b.id,
           availability,
           person,
         }
-      })
+      }))
       this.setState({ bookings })
     } catch (error) {
       console.error(error);
