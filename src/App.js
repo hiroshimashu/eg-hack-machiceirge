@@ -2,19 +2,56 @@ import React, { Component } from "react";
 import Map from "./components/map/map";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import User from "./components/user/user";
+import axios from "axios";
+import MyFancyComponent from "./components/map/map_mod";
 import BottomNavigation from "./components/BottomNavigation";
+import Setting from "./components/Setting/setting";
 import "./App.css";
 
 class App extends Component {
+  state = {
+    userInfo: [],
+    placeInfo: [],
+  }
+
+  componentDidMount() {
+      const users = this.getUsers();
+      const place = this.getPlaces();
+      this.setState({
+        userInfo: users,
+        placeInfo: place,
+      })
+  }
+
+  getUsers = async () => {
+    try {
+      const people = await axios.get("http://13.231.153.234:3000/people");
+      return people.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  getPlaces = async () => {
+    try {
+      const places = await axios.get("http://13.231.153.234:3000/locations");
+      return places.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
 
 
   render() {
     return (
       <Router>
         <div className="App" style={{ width: "100%", height:'575px' }}>
-            <Route  path="/" exact component={ Map } />
+            <Route  path="/" exact component={ MyFancyComponent } />
             <Route  path="/user" component = { User } />
-        </div> 
+            <Route  path = "/setting" component = { Setting }/>
+        </div>
         <BottomNavigation />
       </Router>
     );
