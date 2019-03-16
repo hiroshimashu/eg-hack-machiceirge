@@ -7,6 +7,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { withStyles } from '@material-ui/core/styles';
 
+import { Link } from "react-router-dom";
+
+
 const styles = {
     root: {
       width: '100%',
@@ -35,9 +38,9 @@ class SimpleBottomNavigation extends Component {
           showLabels
           className={classes.root}
         >
-          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+          <BottomNavigationAction component={Link} to="/booking" label="Recents" icon={<RestoreIcon />} />
+          <BottomNavigationAction component={Link} to="/user" label="Favorites" icon={<FavoriteIcon />} />
+          <BottomNavigationAction component={Link} to="/" label="Nearby" icon={<LocationOnIcon />} />
         </BottomNavigation>
       );
     }

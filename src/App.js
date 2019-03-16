@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Map from "./components/map/map";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import User from "./components/user/user";
+import Booking from "./components/booking/booking";
 import axios from "axios";
 import MyFancyComponent from "./components/map/map_mod";
 import BottomNavigation from "./components/BottomNavigation";
@@ -55,6 +56,7 @@ class App extends Component {
               />
             )}
           />
+          <Route path="/booking" component={Booking} />
           <Route path="/user" component={User} />
           <Route path="/setting" component={Setting} />
         </div>

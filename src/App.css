@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .App-logo {
