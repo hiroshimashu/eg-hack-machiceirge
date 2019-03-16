@@ -12,11 +12,14 @@ import "./App.css";
 class App extends Component {
   state = {
     userInfo: [],
-    placeInfo: []
+    placeInfo: [],
+    bookings: [],
   };
 
   componentDidMount() {
     console.log(this.state);
+
+    this.getBookings()
   }
 
   getUsers = async () => {
@@ -41,6 +44,31 @@ class App extends Component {
     }
   };
 
+  getBookings = async () => {
+    try {
+      // TODO: Get from API
+      const bookingIds = [1,25,55]
+
+      const people = await axios.get("http://13.231.153.234:3000/people");
+      const availabilities = await axios.get("http://13.231.153.234:3000/availabilities");
+
+      const bookings = bookingIds.map(bookingId => {
+        const availability = availabilities.data.find(x => x.id == bookingId)
+        const person = people.data.find(x => x.id == availability.person_id)
+
+        return {
+          id: bookingId,
+          availability,
+          person,
+        }
+      })
+      this.setState({ bookings })
+    } catch (error) {
+      console.error(error);
+      return []
+    }
+  };  
+
   render() {
     return (
       <Router>
@@ -56,7 +84,14 @@ class App extends Component {
               />
             )}
           />
-          <Route path="/booking" component={Booking} />
+          <Route
+            path="/booking" 
+            render={props => (
+              <Booking
+                bookings={this.state.bookings}
+              />
+            )}
+            />
           <Route path="/user" component={User} />
           <Route path="/setting" component={Setting} />
         </div>
