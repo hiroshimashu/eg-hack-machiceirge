@@ -1,5 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Docker
+`docker build -t ng-hack-front .`
+
+`docker run -itd -p 3000:3000 -v $(pwd):/app --name ng-hack-front ng-hack-front`
+
+
 ## Available Scripts
 
 In the project directory, you can run:
