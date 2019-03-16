@@ -6,6 +6,7 @@ import {
   GoogleMap,
   Marker
 } from "react-google-maps";
+import MapFirst from "../map/mapTop";
 
 const MyMapComponent = compose(
   withProps({
@@ -21,10 +22,13 @@ const MyMapComponent = compose(
   <GoogleMap defaultZoom={10} defaultCenter={{ lat: 35.681, lng: 139.767125 }}>
     {props.placesInfo.length > 0 ? (
       props.placesInfo.map(place => {
-        console.log(place);  
+        console.log(place);
         return (
           <Marker
-            position={{ lat: parseFloat(place.lat), lng: parseFloat(place.lng) }}
+            position={{
+              lat: parseFloat(place.lat),
+              lng: parseFloat(place.lng)
+            }}
             onClick={props.onMarkerClick}
           />
         );
@@ -44,16 +48,12 @@ class MyFancyComponent extends React.PureComponent {
   };
 
   filterByPreference = (preference, place, users) => {
-      // 1. Check users preference's input
-        // ex). Ramen 
-      // 2. Check 
-  }
+    // 1. Check users preference's input
+      // ex). Ramen
 
-  filterByAvailableTime = (time) => {
+  };
 
-  }
-
-
+  filterByAvailableTime = time => {};
 
   async componentDidMount() {
     this.delayedShowMarker();
@@ -79,12 +79,15 @@ class MyFancyComponent extends React.PureComponent {
 
   render() {
     return (
-      <MyMapComponent
-        usersInfo={this.state.usersInfo}
-        placesInfo={this.state.placesInfo}
-        isMarkerShown={this.state.isMarkerShown}
-        onMarkerClick={this.handleMarkerClick}
-      />
+      <div style = {{ width: "100%", height: "100%"}}>
+        <MapFirst />
+        <MyMapComponent
+          usersInfo={this.state.usersInfo}
+          placesInfo={this.state.placesInfo}
+          isMarkerShown={this.state.isMarkerShown}
+          onMarkerClick={this.handleMarkerClick}
+        />
+      </div>
     );
   }
 }
