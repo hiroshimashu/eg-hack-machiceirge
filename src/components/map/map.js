@@ -12,7 +12,7 @@ const Map = () => (
       params={{
         key: "AIzaSyAAvHKzLnnwoenUn8EX9vQPU34-RiGT8gg",
       }}
-      style={{height: "100%"}}
+      style={{height: "500px"}}
       render={googleMaps => {
         return (
           googleMaps && (
