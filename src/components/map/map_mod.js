@@ -11,49 +11,58 @@ const MyMapComponent = compose(
   withProps({
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyAAvHKzLnnwoenUn8EX9vQPU34-RiGT8gg&libraries=geometry,drawing,places",
-      loadingElement: <div style={{ height: `100%` }} />,
-      containerElement: <div style={{ height: `100%` }} />,
-      mapElement: <div style={{ height: `100%` }} />,
-      locations: [
-      {
-        name: "Shibuya",
-        lat: -34.397,
-        lng: 150.644,
-        radius: 2.0
-      },
-      {
-        name: "Shijuku",
-        lat: -34.397,
-        lng: 152.644,
-        radius: 2.0
-      }
-    ]
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `100%` }} />,
+    mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
   withGoogleMap
 )(props => (
-  <GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
-    {props.isMarkerShown &&
-      props.locations.map(location => {
+  <GoogleMap defaultZoom={10} defaultCenter={{ lat: 35.681, lng: 139.767125 }}>
+    {props.placesInfo.length > 0 ? (
+      props.placesInfo.map(place => {
+        console.log(place);  
         return (
           <Marker
-            position={{lat:location.lat, lng: location.lng}}
+            position={{ lat: parseFloat(place.lat), lng: parseFloat(place.lng) }}
             onClick={props.onMarkerClick}
           />
         );
-      })}
+      })
+    ) : (
+      <div />
+    )}
   </GoogleMap>
 ));
 
 class MyFancyComponent extends React.PureComponent {
   state = {
-    isMarkerShown: false
+    isMarkerShown: false,
+    preference: "",
+    usersInfo: [],
+    placesInfo: []
   };
 
-  componentDidMount() {
+  filterByPreference = (preference, place, users) => {
+      // 1. Check users preference's input
+        // ex). Ramen 
+      // 2. Check 
+  }
+
+  filterByAvailableTime = (time) => {
+
+  }
+
+
+
+  async componentDidMount() {
     this.delayedShowMarker();
-    this.props.getUsers();
-    this.props.getPlaces();
+    const users = await this.props.getUsers();
+    const places = await this.props.getPlaces();
+    this.setState({
+      usersInfo: users,
+      placesInfo: places
+    });
   }
 
   delayedShowMarker = () => {
@@ -63,7 +72,7 @@ class MyFancyComponent extends React.PureComponent {
   };
 
   handleMarkerClick = () => {
-    console.log("marker is clicked");  
+    console.log("marker is clicked");
     //this.setState({ isMarkerShown: false });
     //this.delayedShowMarker();
   };
@@ -71,6 +80,8 @@ class MyFancyComponent extends React.PureComponent {
   render() {
     return (
       <MyMapComponent
+        usersInfo={this.state.usersInfo}
+        placesInfo={this.state.placesInfo}
         isMarkerShown={this.state.isMarkerShown}
         onMarkerClick={this.handleMarkerClick}
       />

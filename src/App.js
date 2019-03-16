@@ -23,6 +23,7 @@ class App extends Component {
       const people = await axios.get("http://13.231.153.234:3000/people");
       console.log(people.data);
       this.setState({ userInfo: people.data });
+      return people.data;
     } catch (error) {
       console.error(error);
     }
@@ -33,6 +34,7 @@ class App extends Component {
       const places = await axios.get("http://13.231.153.234:3000/locations");
       console.log(places.data);
       this.setState({ placeInfo: places.data });
+      return places.data;
     } catch (error) {
       console.error(error);
     }
