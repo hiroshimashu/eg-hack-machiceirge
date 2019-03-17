@@ -34,8 +34,27 @@ class Booking extends Component {
     constructor (props) {
         super(props)
 
+        this.state = {
+            bookings: []
+        }
+
         // Methods Bindings
         this.handleOnClickCancelButton = this.handleOnClickCancelButton.bind(this)
+    }
+
+    componentDidMount() {
+        axios.get("http://13.231.153.234:3000/bookings?customer_id=1")
+            .then((res) => {
+                let bookings = res.data
+                axios.get("http://13.231.153.234:3000/people")
+                    .then((res) => {
+                        let people = res.data
+                        bookings.map(element => {
+                            element.person = people.filter((person) => {return person.id === element.person_id})[0]
+                        });
+                        this.setState({bookings: bookings})
+                    })
+            })
     }
 
     /**
@@ -54,22 +73,26 @@ class Booking extends Component {
 
     render() {
         const { classes, bookings } = this.props;
+        console.log(this.state.bookings)
 
-        const cards = bookings.map(booking => {
+        const cards = this.state.bookings.map(booking => {
             console.log(JSON.stringify(booking, null, 4))
 
-            const specialities = booking.person.specialities.map(s => s.item).join(", ")
-            const locations = booking.person.locations.map(s => s.name).join(", ")
+            const specialities = booking.person.specialities ? booking.person.specialities.map(s => s.item).join(", ") : ''
+            const locations = booking.person.locations ? booking.person.locations.map(s => s.name).join(", ") : ''
 
             const profileUrl = "https://s3-ap-northeast-1.amazonaws.com/matchconcierge-profiles/" + booking.person.id + ".jpg"
             return (
-                <Card className={classes.card}>
+                <Card className={classes.card} key={booking.id}>
                 <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        image={booking.person.profile_photo_url}
-                        title="Profile photo"
-                    />
+                    { booking.person.profile_photo_url ?
+                        <CardMedia
+                            className={classes.media}
+                            image={booking.person.profile_photo_url}
+                            title="Profile photo"
+                        />
+                        : <div></div>
+                    }
                     <CardContent>
                         <Typography color="textSecondary" gutterBottom>
                             Upcoming booking
