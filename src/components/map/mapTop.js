@@ -49,7 +49,7 @@ const MapFirst = () => {
           fontSize: 60,
           color: "white",
           fontWeight: "lighter",
-          margin: 40 0 20
+          margin: [40,0,20]
         }}
       >
         <div style = {{ lineHeight: "60px"}}>MACHI</div>
@@ -65,7 +65,7 @@ const MapFirst = () => {
       </div>
       <div
         className="go-to-second-wrapper"
-        style={{ width: "100%", color: "#FFA71A", margin: 40 0 }}
+        style={{ width: "100%", color: "#FFA71A", margin: [40, 0] }}
       >
         <div
           style={{

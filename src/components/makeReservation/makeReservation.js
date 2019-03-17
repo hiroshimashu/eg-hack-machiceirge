@@ -58,7 +58,7 @@ export default class MakeReservation extends Component {
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", width: "80%", marginLeft: "auto", marginRight: "auto"}}>
           <div>¥1200</div>
-              <Link to = "/finishReservation">
+              <Link to = "/booking/:booking_id/finished">
                 <Button onClick={this.handleClose} color="primary">
                   予約する
                 </Button>
