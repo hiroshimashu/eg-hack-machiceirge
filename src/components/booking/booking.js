@@ -30,6 +30,21 @@ const styles = theme => ({
 });
 
 class Booking extends Component {
+    constructor (props) {
+        super(props)
+
+        // Methods Bindings
+        this.handleOnClickCancelButton = this.handleOnClickCancelButton.bind(this)
+    }
+
+    /**
+     * Handler of Click Cancel Button
+     */
+    handleOnClickCancelButton (bookingId) {
+        // TODO: axiosで取り消し通信
+        // this.props.history.push('/booking/' + bookingId + '/finished')
+    }
+
     render() {
         const { classes, bookings } = this.props;
 
@@ -71,7 +86,7 @@ class Booking extends Component {
                     </CardContent>
                     </CardActionArea>
                     <CardActions>
-                        <Button size="small" color="primary">
+                        <Button size="small" color="primary" onClick={() => this.handleOnClickCancelButton(booking.id)}>
                         Cancel
                         </Button>
                     </CardActions>                

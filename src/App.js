@@ -7,6 +7,7 @@ import MyFancyComponent from "./components/map/map_mod";
 import BottomNavigation from "./components/BottomNavigation";
 import Setting from "./components/Setting/setting";
 import Filtered from "./components/filtered/filtered";
+import FinishBooking from "./components/finish_booking/finish_booking"
 import "./App.css";
 
 class App extends Component {
@@ -108,6 +109,7 @@ class App extends Component {
                 getPlaces={this.getPlaces}
               />
             )} />
+          <Route path="/booking/:booking_id/finished" component={FinishBooking} />
         </div>
         <BottomNavigation />
       </Router>
