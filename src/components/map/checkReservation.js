@@ -100,7 +100,7 @@ class CheckReservation extends Component {
             </Typography>
           </DialogContent>
           <DialogActions>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", widht: "100%", justifyContent: "space-between" }}>
               <div>¥1200</div>
               <Link to = "/makeReservation">
                 <Button onClick={this.handleClose} color="primary">

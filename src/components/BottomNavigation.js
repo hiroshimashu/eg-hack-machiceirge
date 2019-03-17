@@ -5,6 +5,8 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import BookmarkIcon from "@material-ui/icons/Bookmarks";
+import SettingsIcon from "@material-ui/icons/Settings"
 import { withStyles } from '@material-ui/core/styles';
 
 import { Link } from "react-router-dom";
@@ -38,9 +40,9 @@ class SimpleBottomNavigation extends Component {
           showLabels
           className={classes.root}
         >
-          <BottomNavigationAction component={Link} to="/booking" label="Recents" icon={<RestoreIcon />} />
-          <BottomNavigationAction component={Link} to="/user" label="Favorites" icon={<FavoriteIcon />} />
-          <BottomNavigationAction component={Link} to="/" label="Nearby" icon={<LocationOnIcon />} />
+          <BottomNavigationAction component={Link} to="/booking" label="Mybooking" icon={<BookmarkIcon />} />
+          <BottomNavigationAction component={Link} to="/" label="Map" icon={<LocationOnIcon />} />
+          <BottomNavigationAction component={Link} to="/user" label="Setting" icon={<SettingsIcon />} />
         </BottomNavigation>
       );
     }
