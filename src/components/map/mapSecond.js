@@ -7,7 +7,7 @@ class MapSecond extends Component {
 
   render() {
     return (
-      <div className="map-second-wrapper" style = {{ width: "100%", height: "33.3%", backgroundColor: "#FFA71A", paddingTop: "125px" }}>
+      <div className="map-second-wrapper" style = {{ width: "100%", height: "33.3%", backgroundColor: "#FFA71A"}}>
         <div className="what-wrapper" style = {{width: "90%", marginLeft: "auto", marginRight: "auto"}}>
           <div className="what-title" style = {{color: "#ffffff", textAlign: "left"}}>何を食べたいですか？</div>
           <TextField
