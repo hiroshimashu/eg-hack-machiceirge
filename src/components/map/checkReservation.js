@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from "@material-ui/core/Avatar";
 import profile from "../../static/people1.png";
 
 const DialogTitle = withStyles(theme => ({
@@ -79,20 +79,35 @@ class CheckReservation extends Component {
             onClose={this.handleClose}
           />
           <DialogContent>
-          <div className = "profile-pic-wrapper" style = {{ display: "flex", justifyContent: "space-around", marginTop: "15px", width: "80%", borderBottom: "1px solid", marginLeft: "auto", marginRight: "auto", paddingBottom: "15px"}}>
-              <Avatar src = { profile } style = {{width: "129px", height: "129px"}}/>
-              <div className = "profile-text">
-                  <div className = "name" style = {{textAlign:"center"}}>
-                      藤原あい
-                  </div>
-                  <div className = "area-title" style = {{textAlign:"center"}}>
-                     カバーエリア
-                  </div>
-                  <div className = "area" style = {{textAlign:"center"}}>
-                     東京都港区
-                  </div>
+            <div
+              className="profile-pic-wrapper"
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                marginTop: "15px",
+                width: "80%",
+                borderBottom: "1px solid",
+                marginLeft: "auto",
+                marginRight: "auto",
+                paddingBottom: "15px"
+              }}
+            >
+              <Avatar
+                src={profile}
+                style={{ width: "129px", height: "129px" }}
+              />
+              <div className="profile-text">
+                <div className="name" style={{ textAlign: "center"}}>
+                  藤原あい
+                </div>
+                <div className="area-title" style={{ textAlign: "center", fontSize: "9px"}}>
+                  カバーエリア
+                </div>
+                <div className="area" style={{ textAlign: "center", fontSize: "9px" }}>
+                  東京都港区
+                </div>
               </div>
-          </div>
+            </div>
 
             <Typography gutterBottom>
               東京には本当にたくさんのお店がいっぱいありますから、どのお店に入ったらいいか迷いますよね。
@@ -100,9 +115,15 @@ class CheckReservation extends Component {
             </Typography>
           </DialogContent>
           <DialogActions>
-            <div style={{ display: "flex", widht: "100%", justifyContent: "space-between" }}>
+            <div
+              style={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "space-between"
+              }}
+            >
               <div>¥1200</div>
-              <Link to = "/makeReservation">
+              <Link to="/makeReservation">
                 <Button onClick={this.handleClose} color="primary">
                   予約する
                 </Button>

@@ -78,9 +78,17 @@ class MyFancyComponent extends React.PureComponent {
 
   handleMarkerClick = () => {
     console.log("marker is clicked");
-    this.setState({
-      openDialog: true
-    });
+    if(!this.state.openDialog) {
+      this.setState({
+        openDialog: true
+      })
+    } else {
+      this.setState({
+        openDialog: false
+      })
+    }
+
+
     //this.setState({ isMarkerShown: false });
     //this.delayedShowMarker();
   };

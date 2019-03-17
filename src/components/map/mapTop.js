@@ -40,7 +40,7 @@ const MapFirst = () => {
             alt="map-first-img-upper-right"
             style={{ width: "100%" }}
           />
-        </div>
+        </div> 
       </div>
       <div
         className="map-catch-wrapper"
