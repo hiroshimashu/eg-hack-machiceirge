@@ -12,8 +12,7 @@ const MapFirst = () => {
       style={{
         height: "100%",
         width: "100%",
-        fontWeight: "lighter",
-        backgroundColor: "#FFA71A"
+        fontWeight: "lighter"
       }}
     >
       <div
@@ -49,28 +48,28 @@ const MapFirst = () => {
           fontFamily: "avenir",
           fontSize: 60,
           color: "white",
-          fontWeight: "lighter"
+          fontWeight: "lighter",
+          margin: 40 0 20
         }}
       >
-        <div style = {{ lineHeight: "60px"}}>Grab</div>
-        <div style = {{ lineHeight: "60px"}}>Delicious</div>
-        <div style = {{ lineHeight: "60px"}}>Cousin</div>
+        <div style = {{ lineHeight: "60px"}}>MACHI</div>
+        <div style = {{ lineHeight: "60px"}}>CEIRGE</div>
       </div>
       <div
         className="map-catch-sub-wrapper"
-        style={{ fontFamily: "Hiragono kaku gothic", color: "white" }}
+        style={{ fontFamily: "Hiragino Kaku Gothic ProN", color: "white" }}
       >
         旅先の美味しいを、
         <br />
-        現地の人に連れて行ってもらおう
+        現地の人に案内してもらおう
       </div>
       <div
         className="go-to-second-wrapper"
-        style={{ width: "100%", color: "#FFA71A" }}
+        style={{ width: "100%", color: "#FFA71A", margin: 40 0 }}
       >
         <div
           style={{
-            fontFamily: "Hiragono kaku gothic",
+            fontFamily: "Hiragino Kaku Gothic ProN",
             color: "white",
             marginTop: "15px"
           }}
