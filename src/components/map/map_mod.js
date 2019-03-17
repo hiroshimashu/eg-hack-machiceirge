@@ -9,13 +9,15 @@ import {
 } from "react-google-maps";
 import CheckReservation  from "./checkReservation";
 import MapFirst from "../map/mapTop";
+import MapSecond from "../map/mapSecond";
+
 
 const MyMapComponent = compose(
   withProps({
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyAAvHKzLnnwoenUn8EX9vQPU34-RiGT8gg&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `100%` }} />,
+    loadingElement: <div style={{ height: `33.3%` }} />,
+    containerElement: <div style={{ height: `33.3%` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
@@ -85,8 +87,9 @@ class MyFancyComponent extends React.PureComponent {
 
   render() {
     return (
-      <div style = {{ width: "100%", height: "100%"}}>
+      <div style = {{ width: "100%", height: "1725px"}}>
         <MapFirst />
+        <MapSecond />
         <MyMapComponent
           usersInfo={this.state.usersInfo}
           placesInfo={this.state.placesInfo}

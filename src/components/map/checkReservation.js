@@ -10,6 +10,8 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
+import Avatar from '@material-ui/core/Avatar';
+import profile from "../../static/people1.png";
 
 const DialogTitle = withStyles(theme => ({
   root: {
@@ -77,6 +79,21 @@ class CheckReservation extends Component {
             onClose={this.handleClose}
           />
           <DialogContent>
+          <div className = "profile-pic-wrapper" style = {{ display: "flex", justifyContent: "space-around", marginTop: "15px", width: "80%", borderBottom: "1px solid", marginLeft: "auto", marginRight: "auto", paddingBottom: "15px"}}>
+              <Avatar src = { profile } style = {{width: "129px", height: "129px"}}/>
+              <div className = "profile-text">
+                  <div className = "name" style = {{textAlign:"center"}}>
+                      藤原あい
+                  </div>
+                  <div className = "area-title" style = {{textAlign:"center"}}>
+                     カバーエリア
+                  </div>
+                  <div className = "area" style = {{textAlign:"center"}}>
+                     東京都港区
+                  </div>
+              </div>
+          </div>
+
             <Typography gutterBottom>
               東京には本当にたくさんのお店がいっぱいありますから、どのお店に入ったらいいか迷いますよね。
               私は港区のお店を渡り歩いてきましたので、絶対気に入ってもらえるお店に案内できます！

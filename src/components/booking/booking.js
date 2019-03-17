@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -30,6 +31,27 @@ const styles = theme => ({
 });
 
 class Booking extends Component {
+    constructor (props) {
+        super(props)
+
+        // Methods Bindings
+        this.handleOnClickCancelButton = this.handleOnClickCancelButton.bind(this)
+    }
+
+    /**
+     * Handler of Click Cancel Button
+     */
+    handleOnClickCancelButton (bookingId) {
+        // Cancel Researvation
+        axios.delete('http://13.231.153.234:3000/bookings/' + bookingId)
+            .then((res) => {
+                console.log('Cancel Reservation: Successful')
+                // TODO: Want to Update Reservation List
+            }).catch((err) => {
+                console.error('Cancel Reservation: Failed')
+            })
+    }
+
     render() {
         const { classes, bookings } = this.props;
 
@@ -71,7 +93,7 @@ class Booking extends Component {
                     </CardContent>
                     </CardActionArea>
                     <CardActions>
-                        <Button size="small" color="primary">
+                        <Button size="small" color="primary" onClick={() => this.handleOnClickCancelButton(booking.id)}>
                         Cancel
                         </Button>
                     </CardActions>                

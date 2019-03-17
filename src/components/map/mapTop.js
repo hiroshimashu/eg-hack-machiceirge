@@ -10,7 +10,7 @@ const MapFirst = () => {
     <div
       className="map-first-wrapper"
       style={{
-        height: "100%",
+        height: "33.3%",
         width: "100%",
         fontWeight: "lighter",
         backgroundColor: "#FFA71A"
