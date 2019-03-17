@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -41,8 +42,14 @@ class Booking extends Component {
      * Handler of Click Cancel Button
      */
     handleOnClickCancelButton (bookingId) {
-        // TODO: axiosで取り消し通信
-        // this.props.history.push('/booking/' + bookingId + '/finished')
+        // Cancel Researvation
+        axios.delete('http://13.231.153.234:3000/bookings/' + bookingId)
+            .then((res) => {
+                console.log('Cancel Reservation: Successful')
+                // TODO: Want to Update Reservation List
+            }).catch((err) => {
+                console.error('Cancel Reservation: Failed')
+            })
     }
 
     render() {
