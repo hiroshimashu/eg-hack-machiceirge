@@ -9,7 +9,7 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import { Link } "react-router-dom";
+import { Link } from "react-router-dom";
 
 const DialogTitle = withStyles(theme => ({
   root: {
@@ -72,18 +72,25 @@ class CheckReservation extends Component {
           aria-labelledby="customized-dialog-title"
           open={this.state.open}
         >
-          <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-          </DialogTitle>
+          <DialogTitle
+            id="customized-dialog-title"
+            onClose={this.handleClose}
+          />
           <DialogContent>
             <Typography gutterBottom>
-            東京には本当にたくさんのお店がいっぱいありますから、どのお店に入ったらいいか迷いますよね。
-            私は港区のお店を渡り歩いてきましたので、絶対気に入ってもらえるお店に案内できます！
+              東京には本当にたくさんのお店がいっぱいありますから、どのお店に入ったらいいか迷いますよね。
+              私は港区のお店を渡り歩いてきましたので、絶対気に入ってもらえるお店に案内できます！
             </Typography>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              予約する
-            </Button>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div>¥1200</div>
+              <Link to = "/makeReservation">
+                <Button onClick={this.handleClose} color="primary">
+                  予約する
+                </Button>
+              </Link>
+            </div>
           </DialogActions>
         </Dialog>
       </div>
